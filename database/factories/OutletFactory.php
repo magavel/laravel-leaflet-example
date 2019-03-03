@@ -13,10 +13,10 @@ $factory->define(Outlet::class, function (Faker $faker) {
     $maxLongitude = $mapCenterLongitude + 0.07;
 
     return [
-        'name'       => ucwords($faker->words(2, true)),
-        'address'    => $faker->address,
-        'latitude'   => $faker->latitude($minLatitude, $maxLatitude),
-        'longitude'  => $faker->longitude($minLongitude, $maxLongitude),
+        'name' => ucwords($faker->words(2, true)),
+        'address' => $faker->address,
+        'latitude' => $faker->latitude($minLatitude, $maxLatitude),
+        'longitude' => $faker->longitude($minLongitude, $maxLongitude),
         'creator_id' => function () {
             return factory(User::class)->create()->id;
         },

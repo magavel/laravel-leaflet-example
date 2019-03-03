@@ -23,9 +23,9 @@ class ManageOutletTest extends TestCase
     private function getCreateFields(array $overrides = [])
     {
         return array_merge([
-            'name'      => 'Outlet 1 name',
-            'address'   => 'Outlet 1 address',
-            'latitude'  => '-3.333333',
+            'name' => 'Outlet 1 name',
+            'address' => 'Outlet 1 address',
+            'latitude' => '-3.333333',
             'longitude' => '114.583333',
         ], $overrides);
     }
@@ -83,9 +83,9 @@ class ManageOutletTest extends TestCase
     private function getEditFields(array $overrides = [])
     {
         return array_merge([
-            'name'      => 'Outlet 1 name',
-            'address'   => 'Outlet 1 address',
-            'latitude'  => '-3.333333',
+            'name' => 'Outlet 1 name',
+            'address' => 'Outlet 1 address',
+            'latitude' => '-3.333333',
             'longitude' => '114.583333',
         ], $overrides);
     }
@@ -97,7 +97,7 @@ class ManageOutletTest extends TestCase
         $outlet = factory(Outlet::class)->create(['name' => 'Testing 123']);
 
         $this->visitRoute('outlets.show', $outlet);
-        $this->click('edit-outlet-'.$outlet->id);
+        $this->click('edit-outlet-' . $outlet->id);
         $this->seeRouteIs('outlets.edit', $outlet);
 
         $this->submitForm(__('outlet.update'), $this->getEditFields());
@@ -154,7 +154,7 @@ class ManageOutletTest extends TestCase
         factory(Outlet::class)->create();
 
         $this->visitRoute('outlets.edit', $outlet);
-        $this->click('del-outlet-'.$outlet->id);
+        $this->click('del-outlet-' . $outlet->id);
         $this->seeRouteIs('outlets.edit', [$outlet, 'action' => 'delete']);
 
         $this->press(__('app.delete_confirm_button'));

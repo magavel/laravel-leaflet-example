@@ -17,7 +17,7 @@ class OutletController extends Controller
         $this->authorize('manage_outlet');
 
         $outletQuery = Outlet::query();
-        $outletQuery->where('name', 'like', '%'.request('q').'%');
+        $outletQuery->where('name', 'like', '%' . request('q') . '%');
         $outlets = $outletQuery->paginate(25);
 
         return view('outlets.index', compact('outlets'));
@@ -38,7 +38,7 @@ class OutletController extends Controller
     /**
      * Store a newly created outlet in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Routing\Redirector
      */
     public function store(Request $request)
@@ -46,9 +46,9 @@ class OutletController extends Controller
         $this->authorize('create', new Outlet);
 
         $newOutlet = $request->validate([
-            'name'      => 'required|max:60',
-            'address'   => 'nullable|max:255',
-            'latitude'  => 'nullable|required_with:longitude|max:15',
+            'name' => 'required|max:60',
+            'address' => 'nullable|max:255',
+            'latitude' => 'nullable|required_with:longitude|max:15',
             'longitude' => 'nullable|required_with:latitude|max:15',
         ]);
         $newOutlet['creator_id'] = auth()->id();
@@ -61,7 +61,7 @@ class OutletController extends Controller
     /**
      * Display the specified outlet.
      *
-     * @param  \App\Outlet  $outlet
+     * @param  \App\Outlet $outlet
      * @return \Illuminate\View\View
      */
     public function show(Outlet $outlet)
@@ -72,7 +72,7 @@ class OutletController extends Controller
     /**
      * Show the form for editing the specified outlet.
      *
-     * @param  \App\Outlet  $outlet
+     * @param  \App\Outlet $outlet
      * @return \Illuminate\View\View
      */
     public function edit(Outlet $outlet)
@@ -85,8 +85,8 @@ class OutletController extends Controller
     /**
      * Update the specified outlet in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Outlet  $outlet
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Outlet $outlet
      * @return \Illuminate\Routing\Redirector
      */
     public function update(Request $request, Outlet $outlet)
@@ -94,9 +94,9 @@ class OutletController extends Controller
         $this->authorize('update', $outlet);
 
         $outletData = $request->validate([
-            'name'      => 'required|max:60',
-            'address'   => 'nullable|max:255',
-            'latitude'  => 'nullable|required_with:longitude|max:15',
+            'name' => 'required|max:60',
+            'address' => 'nullable|max:255',
+            'latitude' => 'nullable|required_with:longitude|max:15',
             'longitude' => 'nullable|required_with:latitude|max:15',
         ]);
         $outlet->update($outletData);
@@ -107,8 +107,8 @@ class OutletController extends Controller
     /**
      * Remove the specified outlet from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Outlet  $outlet
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Outlet $outlet
      * @return \Illuminate\Routing\Redirector
      */
     public function destroy(Request $request, Outlet $outlet)
